@@ -65,10 +65,12 @@ class TDAapis:
 	def authorize(self, username, password):
 		built_url = self.get_built_url()
 		parse_url = self.get_parse_url(built_url, username, password)
-		self.auth_response = self.get_auth_response(parse_url)
+		auth_response = self.get_auth_response(parse_url)
+		self.access_token = auth_response['access_token']
+		self.refresh_token = auth_response['refresh_token']
+		self.token_type = auth_response['token_type']
 		
 
 
 if __name__ == "__main__":
 	api = TDAapis("config.json")
-	# print(api.auth_response)
